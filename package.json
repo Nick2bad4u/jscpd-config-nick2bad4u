@@ -1,7 +1,7 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
     "name": "jscpd-config-nick2bad4u",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Shared jscpd configuration for Nick2bad4u TypeScript/npm repositories.",
     "keywords": [
         "copy-paste-detection",
