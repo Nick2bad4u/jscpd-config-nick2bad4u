@@ -1,41 +1,59 @@
-# Nick2bad4u Repository Template
+# jscpd-config-nick2bad4u
 
-[![NPM license.](https://flat.badgen.net/npm/license/nick2bad4u-repo-template?color=purple)](https://github.com/Nick2bad4u/nick2bad4u-repo-template/blob/main/LICENSE) [![NPM total downloads.](https://flat.badgen.net/npm/dt/nick2bad4u-repo-template?color=pink)](https://www.npmjs.com/package/nick2bad4u-repo-template) [![Latest GitHub release.](https://flat.badgen.net/github/release/Nick2bad4u/nick2bad4u-repo-template?color=cyan)](https://github.com/Nick2bad4u/nick2bad4u-repo-template/releases) [![GitHub stars.](https://flat.badgen.net/github/stars/Nick2bad4u/nick2bad4u-repo-template?color=yellow)](https://github.com/Nick2bad4u/nick2bad4u-repo-template/stargazers) [![GitHub forks.](https://flat.badgen.net/github/forks/Nick2bad4u/nick2bad4u-repo-template?color=green)](https://github.com/Nick2bad4u/nick2bad4u-repo-template/forks) [![GitHub open issues.](https://flat.badgen.net/github/open-issues/Nick2bad4u/nick2bad4u-repo-template?color=red)](https://github.com/Nick2bad4u/nick2bad4u-repo-template/issues) [![Codecov.](https://codecov.io/gh/Nick2bad4u/nick2bad4u-repo-template/branch/main/graph/badge.svg)](https://codecov.io/gh/Nick2bad4u/nick2bad4u-repo-template)
+[![NPM license.](https://flat.badgen.net/npm/license/jscpd-config-nick2bad4u?color=purple)](https://github.com/Nick2bad4u/jscpd-config-nick2bad4u/blob/main/LICENSE) [![NPM total downloads.](https://flat.badgen.net/npm/dt/jscpd-config-nick2bad4u?color=pink)](https://www.npmjs.com/package/jscpd-config-nick2bad4u) [![Latest GitHub release.](https://flat.badgen.net/github/release/Nick2bad4u/jscpd-config-nick2bad4u?color=cyan)](https://github.com/Nick2bad4u/jscpd-config-nick2bad4u/releases) [![GitHub open issues.](https://flat.badgen.net/github/open-issues/Nick2bad4u/jscpd-config-nick2bad4u?color=red)](https://github.com/Nick2bad4u/jscpd-config-nick2bad4u/issues)
 
-Starter repository for the tooling patterns used across the most active repos under `C:\Repos` and `F:\Repos`.
+Shared [jscpd](https://github.com/kucherenko/jscpd) copy/paste detector configuration for Nick2bad4u TypeScript and npm repositories.
 
-The target shape is a modern public npm package or config/plugin repository:
-
-- Node 24 with npm 11.
-- ESM package layout.
-- TypeScript build and strict typecheck.
-- Vitest tests and coverage.
-- Shared Nick2bad4u configs for ESLint, Prettier, npm-package-json-lint, Remark, Secretlint, Gitleaks, Yamllint, Stylelint, TSDoc, and TypeDoc.
-- GitHub Actions for CI, CodeQL, dependency/security automation, Dependabot, labeling, stale issue handling, and npm provenance publishing.
-- Agent instructions and commit-message guidance so new AI sessions do not have to rediscover the project rules.
-
-## Use This Template
-
-After creating a new repo from this template, run:
+## Install
 
 ```bash
-npm run setup:template -- --name my-package --description "Package description"
-npm install
-npm run lint:all
+npm install --save-dev jscpd jscpd-config-nick2bad4u
 ```
 
-Useful options:
+## Usage
+
+Point `jscpd` at the shared config file from consuming repositories:
+
+```json
+{
+ "scripts": {
+  "lint:jscpd": "jscpd --config node_modules/jscpd-config-nick2bad4u/jscpd.json"
+ }
+}
+```
+
+Additional CLI arguments still work through the native `jscpd` command:
 
 ```bash
-npm run setup:template -- --name eslint-plugin-example --description "ESLint plugin for example rules" --repo Nick2bad4u/eslint-plugin-example
-npm run setup:template -- --name internal-tool --private true --no-publish
-npm run setup:template -- --name docs-plugin --docs true --stylelint true
+npm run lint:jscpd -- ./src --reporters console,json
 ```
 
-## What Gets Standardized
+## Programmatic Access
 
-The template intentionally keeps app-specific workflows, Electron build jobs, Docusaurus deploys, Codecov, SonarCloud, VirusTotal, and IndexNow out of the default CI path. Those exist in your active repos, but they are not universal enough to belong in every new repo.
+```ts
+import { jscpdConfigPath, loadJscpdConfig } from "jscpd-config-nick2bad4u";
 
-## Maintenance Checklist
+const jscpdConfig = await loadJscpdConfig();
 
-Use [docs/UPDATE_CHECKLIST.md](docs/UPDATE_CHECKLIST.md) when creating a new repository from this template or refreshing the template after shared tooling updates.
+console.log(jscpdConfigPath);
+console.log(jscpdConfig.threshold);
+```
+
+The raw JSON file is also exported:
+
+```ts
+import config from "jscpd-config-nick2bad4u/jscpd.json" with { type: "json" };
+```
+
+## Defaults
+
+- Respects `.gitignore`.
+- Scans `**/*` with broad ignores for generated output, dependency folders, reports, docs, tests, binary/media assets, and common tool config files.
+- Uses `mild` matching with `minLines: 10`, `minTokens: 50`, `maxLines: 10000`, and `maxSize: "100kb"`.
+- Writes reports to `./reports/jscpd/`.
+- Enables `html`, `markdown`, `json`, `console`, `badge`, `xml`, and `csv` reporters.
+- Keeps `exitCode: 0` so duplicate reports are informational unless a consuming repo chooses stricter CLI overrides.
+
+## Maintenance
+
+Use [docs/UPDATE_CHECKLIST.md](docs/UPDATE_CHECKLIST.md) when refreshing the shared config or migrating consuming repositories.

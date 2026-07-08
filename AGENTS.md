@@ -1,20 +1,19 @@
 # Repository Instructions
 
-This repository is a reusable starter for Nick2bad4u npm/TypeScript projects.
-Treat the root files as the GitHub template payload.
+This repository publishes `jscpd-config-nick2bad4u`, the shared jscpd copy/paste detector configuration for Nick2bad4u npm/TypeScript repositories.
 
 ## Priorities
 
-- Preserve the shared tooling defaults unless a target repository has a clear reason to opt out.
-- Prefer repository scripts over ad hoc commands in GitHub Actions.
-- Keep generated output, dependency folders, build artifacts, and local reports out of commits.
+- Keep `jscpd.json` as the canonical config consumed by the package wrapper and by direct `jscpd --config` usage.
+- Preserve broad generated-output, dependency, report, and asset ignores unless a target repository class needs coverage.
+- Keep the `jscpd-nick2bad4u` binary small: it should resolve the bundled config, call `jscpd`, and forward user arguments.
 - Do not weaken security scanners or release gates to make CI pass.
 - Keep workflow permissions least-privilege and keep third-party actions pinned by SHA where already pinned.
 
 ## Common Commands
 
 ```bash
-npm run setup:template -- --name my-package --description "Package description"
+npm run lint:jscpd
 npm run lint:all
 npm run typecheck
 npm run test

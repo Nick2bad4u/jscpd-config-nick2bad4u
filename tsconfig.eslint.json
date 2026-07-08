@@ -34,7 +34,6 @@
         "**/.vitepress/cache/**",
         "**/.vitepress/dist/**",
         "**/.yarn/**",
-        "**/bin/**",
         "**/bower_components/**",
         "**/build/**",
         "**/bundle/**",

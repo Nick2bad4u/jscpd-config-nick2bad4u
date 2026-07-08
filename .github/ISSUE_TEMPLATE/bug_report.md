@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a reproducible bug in nick2bad4u-repo-template
+about: Report a reproducible bug in jscpd-config-nick2bad4u
 title: "Bug: "
 labels:
  - bug
@@ -14,26 +14,26 @@ assignees: []
 
 ## Rule / Area
 
-<!-- Example: prefer-ts-extras-array-at, docs/docusaurus, presets, runtime API docs -->
+<!-- Example: exported config path, reporter output, ignore pattern -->
 
 ## Reproduction
 
 ### Flat config snippet
 
 ```mjs
-// Minimal eslint.config.mjs (or relevant excerpt)
+// Minimal package.json script or jscpd command
 ```
 
 ### Minimal code sample
 
 ```ts
-// Minimal reproducible input
+// Minimal reproducible duplicated input
 ```
 
 ### Command and output
 
 ```bash
-# Example: npm run test -- test/prefer-ts-extras-array-at.test.ts
+# Example: npm run lint:jscpd
 ```
 
 ## Steps to reproduce
@@ -50,10 +50,8 @@ assignees: []
 
 - Node.js version:
 - npm version:
-- ESLint version:
-- TypeScript version:
-- `@typescript-eslint/*` version:
-- `nick2bad4u-repo-template` version/commit:
+- jscpd version:
+- `jscpd-config-nick2bad4u` version/commit:
 - OS:
 
 ## Additional context

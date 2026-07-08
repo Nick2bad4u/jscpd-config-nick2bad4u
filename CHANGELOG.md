@@ -2,4 +2,4 @@
 
 ## Unreleased
 
-- Initial local template scaffold.
+- Initial shared jscpd config package scaffold.

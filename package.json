@@ -1,22 +1,22 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
-    "name": "nick2bad4u-repo-template",
+    "name": "jscpd-config-nick2bad4u",
     "version": "0.1.0",
-    "private": true,
-    "description": "Reusable starter repository for Nick2bad4u TypeScript/npm projects.",
+    "description": "Shared jscpd configuration for Nick2bad4u TypeScript/npm repositories.",
     "keywords": [
-        "github-template",
-        "typescript",
-        "npm",
-        "tooling"
+        "copy-paste-detection",
+        "duplication",
+        "jscpd",
+        "nick2bad4u",
+        "shared-config"
     ],
-    "homepage": "https://github.com/Nick2bad4u/nick2bad4u-repo-template",
+    "homepage": "https://github.com/Nick2bad4u/jscpd-config-nick2bad4u",
     "bugs": {
-        "url": "https://github.com/Nick2bad4u/nick2bad4u-repo-template/issues"
+        "url": "https://github.com/Nick2bad4u/jscpd-config-nick2bad4u/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Nick2bad4u/nick2bad4u-repo-template.git"
+        "url": "git+https://github.com/Nick2bad4u/jscpd-config-nick2bad4u.git"
     },
     "license": "MIT",
     "author": "Nick2bad4u <20943337+Nick2bad4u@users.noreply.github.com> (https://github.com/Nick2bad4u)",
@@ -26,13 +26,15 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./dist/tooling-baseline.d.ts",
-            "default": "./dist/tooling-baseline.js"
-        }
+            "types": "./dist/jscpd-config.d.ts",
+            "default": "./dist/jscpd-config.js"
+        },
+        "./jscpd.json": "./jscpd.json"
     },
-    "types": "./dist/tooling-baseline.d.ts",
+    "types": "./dist/jscpd-config.d.ts",
     "files": [
         "dist",
+        "jscpd.json",
         "src",
         "README.md",
         "LICENSE"
@@ -75,7 +77,6 @@
         "package:check": "npm pack --dry-run",
         "release:check": "npm run release:verify",
         "release:verify": "npm run sync:node-version-files:check && npm run build && npm run lint:all && npm run test:coverage && npm run lint:package-check",
-        "setup:template": "node scripts/setup-template.mjs",
         "sync:node-version-files": "node scripts/sync-node-version-files.mjs",
         "sync:node-version-files:check": "node scripts/sync-node-version-files.mjs --check",
         "test": "vitest run",
@@ -87,6 +88,9 @@
         "update-all": "npm run update-actions && npm run update-deps",
         "update-deps": "npx ncu -i --install never && npm update --force && npm install --force && npm run sync:node-version-files",
         "verify": "npm run release:verify"
+    },
+    "dependencies": {
+        "type-fest": "^5.8.0"
     },
     "devDependencies": {
         "@arethetypeswrong/cli": "^0.18.4",
@@ -122,6 +126,9 @@
         "vite": "^8.1.3",
         "vitest": "^4.1.10",
         "yamllint-config-nick2bad4u": "^1.1.1"
+    },
+    "peerDependencies": {
+        "jscpd": "^5.0.11"
     },
     "packageManager": "npm@11.18.0",
     "engines": {

@@ -101,6 +101,7 @@
         "markdown",
         "json",
         "console",
+        "badge",
         "xml",
         "csv"
     ],

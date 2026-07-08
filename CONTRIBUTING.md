@@ -4,7 +4,7 @@
 
 ```bash
 npm ci
-npm run setup:template -- --name my-package --description "Package description"
+npm run build
 ```
 
 ## Before Opening A Pull Request

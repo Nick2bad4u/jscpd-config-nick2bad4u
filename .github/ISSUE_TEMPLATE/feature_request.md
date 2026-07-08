@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest a new rule or improvement for nick2bad4u-repo-template
+about: Suggest a jscpd config improvement for jscpd-config-nick2bad4u
 title: "Feature: "
 labels:
  - enhancement
@@ -14,13 +14,13 @@ assignees: []
 
 ## Proposed solution
 
-<!-- Describe expected behavior, messages, and fixer/suggestion expectations. -->
+<!-- Describe expected config, reporter, or migration behavior. -->
 
 ## Scope
 
-- Type: New rule / Rule enhancement / Config preset / Docs / Tooling
-- Affected rule IDs (if any):
-- Requires type checking?: Yes / No / Unsure
+- Type: Config default / Ignore pattern / Reporter / Docs / Tooling
+- Affected file patterns or reporters:
+- Requires a jscpd major-version change?: Yes / No / Unsure
 
 ## Alternatives considered
 
@@ -40,7 +40,7 @@ assignees: []
 
 ## Acceptance criteria
 
-- [ ] Clear, actionable diagnostic message(s)
-- [ ] Safe autofix or suggestion behavior defined
-- [ ] Test coverage plan (valid/invalid/edge/fixer)
-- [ ] Documentation impact identified (`docs/rules/<rule-id>.md` if rule-related)
+- [ ] Config behavior is clearly defined
+- [ ] Impact on consuming repositories is identified
+- [ ] Test coverage plan is identified
+- [ ] Documentation impact is identified
