@@ -89,6 +89,11 @@
         "update-deps": "npx ncu -i --install never && npm update --force && npm install --force && npm run sync:node-version-files",
         "verify": "npm run release:verify"
     },
+    "overrides": {
+        "tsup": {
+            "esbuild": "0.28.1"
+        }
+    },
     "dependencies": {
         "type-fest": "^5.8.0"
     },
