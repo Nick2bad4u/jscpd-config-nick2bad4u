@@ -41,6 +41,9 @@ export interface JscpdConfig {
     /** Whether jscpd should avoid following symbolic links. */
     readonly noSymlinks: boolean;
 
+    /** Whether jscpd should suppress tips and promotional messages. */
+    readonly noTips: boolean;
+
     /** Output directory for file-based reporters. */
     readonly output: string;
 
@@ -210,6 +213,7 @@ export function parseJscpdConfig(config: unknown): JscpdConfig {
         minTokens: readNumber(config, "minTokens"),
         mode: readMode(config, "mode"),
         noSymlinks: isConfigBoolean(config, "noSymlinks"),
+        noTips: isConfigBoolean(config, "noTips"),
         output: readString(config, "output"),
         pattern: readString(config, "pattern"),
         reporters: readStringArray(config, "reporters"),

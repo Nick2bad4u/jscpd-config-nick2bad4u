@@ -32,6 +32,40 @@ describe("jscpd shared config", () => {
         expect(jscpdConfig.reporters).toContain("badge");
     });
 
+    it("keeps shared scan defaults aligned with jscpd v5", async () => {
+        expect.assertions(6);
+
+        const jscpdConfig = await loadJscpdConfig();
+        const overlyBroadToolGlobs = [
+            "**/babel*",
+            "**/commitlint*",
+            "**/eslint*",
+            "**/grunt*",
+            "**/gulp*",
+            "**/husky*",
+            "**/lint-staged*",
+            "**/prettier*",
+            "**/rollup*",
+            "**/stylelint*",
+            "**/webpack*",
+        ];
+
+        expect(jscpdConfig.ignore).not.toStrictEqual(
+            expect.arrayContaining(overlyBroadToolGlobs)
+        );
+        expect(jscpdConfig.ignore).toStrictEqual(
+            expect.arrayContaining([
+                "**/eslint.config.*",
+                "**/prettier.config.*",
+                "**/stylelint.config.*",
+            ])
+        );
+        expect(jscpdConfig.maxSize).toBe("1mb");
+        expect(jscpdConfig.noSymlinks).toBe(true);
+        expect(jscpdConfig.noTips).toBe(true);
+        expect(jscpdConfig.threshold).toBe(100);
+    });
+
     it("rejects invalid config input", () => {
         expect.assertions(1);
 
