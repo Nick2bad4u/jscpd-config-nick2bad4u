@@ -184,6 +184,8 @@ const readStringArray = (
  */
 export async function loadJscpdConfig(): Promise<JscpdConfig> {
     const parsedConfig: unknown = JSON.parse(
+        // The path is package-controlled and anchored to this module, never user input.
+        // eslint-disable-next-line security/detect-non-literal-fs-filename -- Reading the package's bundled configuration is the intended API.
         await readFile(jscpdConfigPath, "utf8")
     );
 
