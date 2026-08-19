@@ -4,7 +4,15 @@ import nickTwoBadFourU from "eslint-config-nick2bad4u";
 const config = [
     ...nickTwoBadFourU.configs.all,
 
-    // Add repository-specific config entries below as needed.
+    {
+        files: [".gitleaks.toml"],
+        name: "Gitleaks TOML cross-platform formatter alignment",
+        rules: {
+            // Tombi currently produces conflicting indentation on Windows and Linux.
+            // The TOML parser/style rules and Gitleaks itself still validate this file.
+            "tombi/tombi": "off",
+        },
+    },
 ];
 
 export default config;

@@ -113,7 +113,7 @@ jobs:
                   cache-dependency-path: "package-lock.json"
 
             - name: "Install dependencies"
-              run: "npm ci --force"
+              run: "npm ci --force --ignore-scripts"
 
             - name: "Install Gitleaks"
               env:
@@ -121,8 +121,8 @@ jobs:
               run: |
                   install_dir="${RUNNER_TEMP}/gitleaks"
                   mkdir -p "${install_dir}"
-                  curl -fsSLo "${install_dir}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
-                  curl -fsSLo "${install_dir}/gitleaks_${GITLEAKS_VERSION}_checksums.txt" "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_checksums.txt"
+                  curl --proto '=https' --proto-redir '=https' -fsSLo "${install_dir}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+                  curl --proto '=https' --proto-redir '=https' -fsSLo "${install_dir}/gitleaks_${GITLEAKS_VERSION}_checksums.txt" "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_checksums.txt"
                   (
                       cd "${install_dir}"
                       grep "gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" "gitleaks_${GITLEAKS_VERSION}_checksums.txt" | sha256sum --check -
